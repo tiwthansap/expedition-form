@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ทะเบียนคณะสำรวจโบราณคดี</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+Thai:wght@500;700&family=IBM+Plex+Sans+Thai:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+  :root{
+    --ink:#0d1012;
+    --ink-2:#14181a;
+    --glass:rgba(30,35,37,.62);
+    --glass-2:rgba(38,44,46,.55);
+    --line:rgba(216,206,188,.14);
+    --line-2:rgba(216,206,188,.28);
+    --text:#e8e3d8;
+    --muted:#9ba39d;
+    --faint:#6f7772;
+    --ochre:#d9a441;
+    --ochre-dim:rgba(217,164,65,.16);
+    --patina:#54b8a6;
+    --clay:#e2705a;
+    --radius:14px;
+    --shadow:0 24px 60px rgba(0,0,0,.45);
+    color-scheme:dark;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;
+    background:var(--ink);
+    background-image:
+      radial-gradient(900px 520px at 12% -8%, rgba(217,164,65,.13), transparent 62%),
+      radial-gradient(760px 480px at 92% 4%, rgba(84,184,166,.10), transparent 60%),
+      linear-gradient(180deg,#0d1012 0%,#0f1315 60%,#0c0f10 100%);
+    background-attachment:fixed;
+    color:var(--text);
+    font-family:"IBM Plex Sans Thai","Noto Sans Thai",system-ui,-apple-system,sans-serif;
+    font-weight:300;
+    font-size:15.5px;
+    line-height:1.72;
+    -webkit-font-smoothing:antialiased;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.35;
+    background-image:linear-gradient(rgba(216,206,188,.045) 1px,transparent 1px),
+                     linear-gradient(90deg,rgba(216,206,188,.045) 1px,transparent 1px);
+    background-size:64px 64px;
+    mask-image:radial-gradient(circle at 50% 0%,#000 0%,transparent 78%);
+    -webkit-mask-image:radial-gradient(circle at 50% 0%,#000 0%,transparent 78%);
+  }
+  .wrap{position:relative;z-index:1;max-width:1180px;margin:0 auto;padding:38px 22px 90px}
+
+  /* ---------- header ---------- */
+  .topbar{display:flex;flex-wrap:wrap;gap:16px;align-items:flex-end;justify-content:space-between;margin-bottom:26px}
+  .eyebrow{
+    font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:11.5px;letter-spacing:.22em;
+    text-transform:uppercase;color:var(--ochre);margin:0 0 8px
+  }
+  h1{
+    font-family:"Noto Serif Thai",Georgia,serif;font-weight:700;
+    font-size:clamp(28px,4.4vw,44px);line-height:1.24;margin:0;text-wrap:balance;letter-spacing:-.01em
+  }
+  .sub{color:var(--muted);margin:10px 0 0;max-width:56ch;font-size:15px}
+
+  .idcard{
+    background:var(--glass);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+    border:1px solid var(--line);border-radius:var(--radius);padding:14px 18px;min-width:270px;
+    box-shadow:var(--shadow)
+  }
+  .idcard .k{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--faint)}
+  .idcard .code{font-family:"IBM Plex Mono",monospace;font-size:19px;color:var(--ochre);letter-spacing:.06em;font-variant-numeric:tabular-nums}
+  .idcard .who{font-size:17px;font-weight:500;margin-top:2px}
+  .idcard .org{font-size:12.5px;color:var(--faint);margin-top:4px}
+
+  /* ---------- layout ---------- */
+  .grid{display:grid;grid-template-columns:1fr 292px;gap:26px;align-items:start}
+  @media (max-width:900px){.grid{grid-template-columns:1fr}}
+
+  .panel{
+    background:var(--glass);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+    border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);overflow:hidden
+  }
+  .side{position:sticky;top:24px;display:flex;flex-direction:column;gap:18px}
+  @media (max-width:900px){.side{position:static}}
+
+  fieldset{border:0;margin:0;padding:26px 26px 30px;border-bottom:1px solid var(--line)}
+  fieldset:last-of-type{border-bottom:0}
+  legend{
+    display:flex;align-items:baseline;gap:12px;padding:0;width:100%;
+    font-family:"Noto Serif Thai",Georgia,serif;font-size:19px;font-weight:500;color:var(--text)
+  }
+  legend .num{
+    font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.14em;color:var(--ochre);
+    border:1px solid var(--ochre-dim);background:var(--ochre-dim);border-radius:999px;padding:3px 9px
+  }
+  .legend-note{color:var(--faint);font-size:13px;margin:6px 0 20px}
+
+  .row{display:grid;gap:18px}
+  .row.two{grid-template-columns:1fr 1fr}
+  @media (max-width:640px){.row.two{grid-template-columns:1fr}}
+
+  .field{display:flex;flex-direction:column;gap:7px;min-width:0}
+  label.lbl{font-size:13.5px;font-weight:500;color:var(--text);display:flex;align-items:center;gap:6px}
+  .req{color:var(--ochre);font-size:14px;line-height:1}
+  .hint{font-size:12px;color:var(--faint);line-height:1.5}
+
+  input[type=text],input[type=email],input[type=tel],input[type=date],
+  input[type=password],select,textarea{
+    width:100%;padding:11px 13px;border-radius:10px;color:var(--text);
+    background:rgba(12,15,16,.55);border:1px solid var(--line-2);
+    font-family:inherit;font-size:14.5px;font-weight:300;transition:border-color .16s,box-shadow .16s,background .16s
+  }
+  input::placeholder,textarea::placeholder{color:#5c635e}
+  input:focus,select:focus,textarea:focus{
+    outline:none;border-color:var(--ochre);box-shadow:0 0 0 3px rgba(217,164,65,.17);background:rgba(12,15,16,.8)
+  }
+  input[type=date]{color-scheme:dark}
+  textarea{resize:vertical;min-height:104px;line-height:1.7}
+  select{appearance:none;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'><path d='M1 1l5 5 5-5' stroke='%239ba39d' stroke-width='1.5' fill='none' stroke-linecap='round'/></svg>");background-repeat:no-repeat;background-position:right 13px center;background-size:12px;padding-right:34px}
+
+  .field.bad input,.field.bad select,.field.bad textarea{border-color:var(--clay);box-shadow:0 0 0 3px rgba(226,112,90,.13)}
+  .field.good input,.field.good select,.field.good textarea{border-color:rgba(84,184,166,.6)}
+  .msg{font-size:12.5px;min-height:0;display:none;color:var(--clay);gap:6px;align-items:flex-start;line-height:1.5}
+  .field.bad .msg{display:flex}
+  .msg::before{content:"!";font-family:"IBM Plex Mono",monospace;font-size:10px;flex:0 0 15px;height:15px;margin-top:2px;
+    border:1px solid var(--clay);border-radius:50%;display:grid;place-items:center;font-weight:500}
+
+  /* choice groups */
+  .chips{display:flex;flex-wrap:wrap;gap:9px}
+  .chip{position:relative;cursor:pointer;user-select:none}
+  .chip input{position:absolute;opacity:0;width:0;height:0}
+  .chip span{
+    display:inline-block;padding:8px 15px;border-radius:999px;font-size:13.5px;
+    border:1px solid var(--line-2);background:rgba(12,15,16,.4);color:var(--muted);transition:.16s
+  }
+  .chip input:checked+span{border-color:var(--ochre);background:var(--ochre-dim);color:var(--ochre)}
+  .chip input:focus-visible+span{box-shadow:0 0 0 3px rgba(217,164,65,.25)}
+  .chip:hover span{border-color:var(--line-2);color:var(--text)}
+  .field.bad .chips .chip span{border-color:rgba(226,112,90,.45)}
+
+  .checkline{display:flex;gap:11px;align-items:flex-start;cursor:pointer;font-size:14px;line-height:1.6}
+  .checkline input{
+    appearance:none;flex:0 0 19px;height:19px;margin-top:3px;border-radius:5px;
+    border:1px solid var(--line-2);background:rgba(12,15,16,.5);cursor:pointer;transition:.16s
+  }
+  .checkline input:checked{background:var(--ochre);border-color:var(--ochre)}
+  .checkline input:checked::after{content:"";display:block;width:5px;height:9px;margin:2px auto 0;border:solid #14181a;border-width:0 2px 2px 0;transform:rotate(42deg)}
+  .checkline input:focus-visible{box-shadow:0 0 0 3px rgba(217,164,65,.25);outline:none}
+  .field.bad .checkline input{border-color:var(--clay)}
+
+  /* file */
+  .drop{
+    border:1px dashed var(--line-2);border-radius:12px;padding:22px;text-align:center;cursor:pointer;
+    background:rgba(12,15,16,.32);transition:.16s
+  }
+  .drop:hover,.drop.over{border-color:var(--ochre);background:rgba(217,164,65,.07)}
+  .drop .big{font-size:14px;color:var(--text)}
+  .drop .small{font-size:12px;color:var(--faint);margin-top:4px}
+  .drop input{display:none}
+  .filechip{
+    display:none;align-items:center;gap:10px;margin-top:10px;padding:9px 12px;border-radius:10px;
+    background:rgba(84,184,166,.09);border:1px solid rgba(84,184,166,.32);font-size:13px
+  }
+  .filechip.on{display:flex}
+  .filechip .nm{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .filechip .sz{font-family:"IBM Plex Mono",monospace;font-size:11.5px;color:var(--muted)}
+  .filechip button{background:none;border:0;color:var(--muted);cursor:pointer;font-size:16px;line-height:1;padding:0 2px}
+  .filechip button:hover{color:var(--clay)}
+  .field.bad .drop{border-color:var(--clay)}
+
+  /* slider */
+  .slider-head{display:flex;justify-content:space-between;align-items:baseline}
+  .slider-val{font-family:"IBM Plex Mono",monospace;font-size:20px;color:var(--ochre);font-variant-numeric:tabular-nums}
+  input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:26px;background:transparent;cursor:pointer}
+  input[type=range]::-webkit-slider-runnable-track{height:4px;border-radius:99px;background:linear-gradient(90deg,var(--ochre) var(--pct,0%),rgba(216,206,188,.16) var(--pct,0%))}
+  input[type=range]::-moz-range-track{height:4px;border-radius:99px;background:rgba(216,206,188,.16)}
+  input[type=range]::-moz-range-progress{height:4px;border-radius:99px;background:var(--ochre)}
+  input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:17px;height:17px;border-radius:50%;background:var(--ochre);border:3px solid #14181a;margin-top:-6.5px;box-shadow:0 0 0 1px var(--ochre)}
+  input[type=range]::-moz-range-thumb{width:11px;height:11px;border-radius:50%;background:var(--ochre);border:3px solid #14181a;box-shadow:0 0 0 1px var(--ochre)}
+  input[type=range]:focus-visible{outline:none}
+  input[type=range]:focus-visible::-webkit-slider-thumb{box-shadow:0 0 0 1px var(--ochre),0 0 0 5px rgba(217,164,65,.25)}
+  .scale{display:flex;justify-content:space-between;font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--faint)}
+
+  /* strength + counter */
+  .bars{display:flex;gap:5px;margin-top:2px}
+  .bars i{flex:1;height:3px;border-radius:99px;background:rgba(216,206,188,.14)}
+  .bars i.on1{background:var(--clay)}.bars i.on2{background:var(--ochre)}.bars i.on3{background:var(--patina)}
+  .count{font-family:"IBM Plex Mono",monospace;font-size:11.5px;color:var(--faint);text-align:right;font-variant-numeric:tabular-nums}
+  .count.warn{color:var(--clay)}
+
+  /* actions */
+  .actions{display:flex;flex-wrap:wrap;gap:12px;padding:24px 26px 26px;align-items:center}
+  button.btn{
+    font-family:inherit;font-size:14.5px;font-weight:500;border-radius:11px;padding:12px 26px;cursor:pointer;
+    border:1px solid transparent;transition:.16s
+  }
+  .btn.primary{background:var(--ochre);color:#121617;border-color:var(--ochre)}
+  .btn.primary:hover{background:#e8b355;box-shadow:0 8px 24px rgba(217,164,65,.22)}
+  .btn.ghost{background:transparent;color:var(--muted);border-color:var(--line-2)}
+  .btn.ghost:hover{color:var(--text);border-color:var(--text)}
+  .btn:focus-visible{outline:2px solid var(--ochre);outline-offset:3px}
+  .formnote{font-size:12.5px;color:var(--faint);flex:1;min-width:180px}
+
+  /* side widgets */
+  .side .box{padding:20px}
+  .ring{display:flex;align-items:center;gap:15px}
+  .ring svg{flex:0 0 62px;transform:rotate(-90deg)}
+  .ring .trk{stroke:rgba(216,206,188,.14)}
+  .ring .bar{stroke:var(--ochre);stroke-linecap:round;transition:stroke-dasharray .35s ease}
+  .ring .pct{font-family:"IBM Plex Mono",monospace;font-size:22px;color:var(--text);font-variant-numeric:tabular-nums}
+  .ring .cap{font-size:12.5px;color:var(--faint);line-height:1.45}
+  .side h3{font-family:"Noto Serif Thai",serif;font-size:15px;font-weight:500;margin:0 0 12px}
+  .steps{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:9px}
+  .steps li{display:flex;gap:10px;align-items:center;font-size:13.5px;color:var(--muted)}
+  .steps li .dot{flex:0 0 8px;height:8px;border-radius:50%;background:rgba(216,206,188,.2);transition:.2s}
+  .steps li.done{color:var(--text)}
+  .steps li.done .dot{background:var(--patina);box-shadow:0 0 0 3px rgba(84,184,166,.16)}
+  .side .meta{font-size:12.5px;color:var(--faint);line-height:1.7;margin:0}
+  .side .meta b{color:var(--muted);font-weight:500}
+
+  /* modal */
+  .veil{position:fixed;inset:0;background:rgba(6,8,9,.72);backdrop-filter:blur(6px);z-index:50;display:none;place-items:center;padding:22px}
+  .veil.on{display:grid}
+  .modal{
+    background:linear-gradient(180deg,rgba(34,40,42,.96),rgba(20,24,26,.96));
+    border:1px solid var(--line-2);border-radius:18px;max-width:520px;width:100%;box-shadow:var(--shadow);
+    max-height:86vh;overflow:auto
+  }
+  .modal .top{padding:24px 26px 18px;border-bottom:1px solid var(--line)}
+  .modal .tick{width:38px;height:38px;border-radius:50%;background:rgba(84,184,166,.14);border:1px solid rgba(84,184,166,.5);display:grid;place-items:center;margin-bottom:12px}
+  .modal .tick::after{content:"";width:8px;height:14px;border:solid var(--patina);border-width:0 2px 2px 0;transform:rotate(42deg) translateY(-2px)}
+  .modal h2{font-family:"Noto Serif Thai",serif;font-size:21px;margin:0 0 4px;font-weight:500}
+  .modal p.lead{margin:0;color:var(--muted);font-size:13.5px}
+  .modal dl{margin:0;padding:20px 26px;display:grid;grid-template-columns:auto 1fr;gap:11px 18px;font-size:13.5px}
+  .modal dt{color:var(--faint);font-size:12.5px;white-space:nowrap}
+  .modal dd{margin:0;color:var(--text);overflow-wrap:anywhere}
+  .modal .foot{padding:0 26px 24px}
+  @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+  .shake{animation:shk .38s}
+  @keyframes shk{0%,100%{transform:translateX(0)}22%{transform:translateX(-5px)}55%{transform:translateX(5px)}80%{transform:translateX(-2px)}}
+  footer.credit{margin-top:34px;text-align:center;font-size:12.5px;color:var(--faint)}
+  footer.credit b{color:var(--muted);font-weight:500}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <div class="topbar">
+    <div>
+      <p class="eyebrow">Expedition Registration · แบบฟอร์มรับสมัคร</p>
+      <h1>ใบสมัครร่วมคณะสำรวจโบราณคดี</h1>
+      <p class="sub">กรอกข้อมูลให้ครบถ้วนเพื่อเข้าร่วมภารกิจขุดค้นภาคสนาม ระบบจะตรวจสอบความถูกต้องของข้อมูลทุกช่องก่อนส่งใบสมัคร</p>
+    </div>
+    <div class="idcard">
+      <div class="k">จัดทำโดย</div>
+      <div class="code" id="stdCode">66040233151</div>
+      <div class="who" id="stdName">ฐานทรัพย์ หาญเชิงชัย</div>
+      <div class="org">สาขาเทคโนโลยีสารสนเทศ · มหาวิทยาลัยราชภัฏอุดรธานี</div>
+    </div>
+  </div>
+
+  <div class="grid">
+    <form class="panel" id="frm" novalidate>
+
+      <fieldset>
+        <legend><span class="num">01</span> ข้อมูลผู้สมัคร</legend>
+        <p class="legend-note">ข้อมูลส่วนนี้จำเป็นต้องกรอกทั้งหมด ใช้สำหรับยืนยันตัวตนก่อนออกบัตรประจำคณะสำรวจ</p>
+
+        <div class="row two">
+          <div class="field" data-name="fullname">
+            <label class="lbl" for="fullname">ชื่อ-นามสกุล <span class="req">*</span></label>
+            <input type="text" id="fullname" name="fullname" placeholder="เช่น สมชาย ใจดี" autocomplete="name">
+            <p class="hint">กรอกชื่อและนามสกุล คั่นด้วยเว้นวรรค 1 ครั้ง</p>
+            <p class="msg"></p>
+          </div>
+          <div class="field" data-name="email">
+            <label class="lbl" for="email">อีเมล <span class="req">*</span></label>
+            <input type="email" id="email" name="email" placeholder="name@example.com" autocomplete="email">
+            <p class="hint">ใช้รับผลการพิจารณาและกำหนดการเดินทาง</p>
+            <p class="msg"></p>
+          </div>
+        </div>
+
+        <div class="row two" style="margin-top:18px">
+          <div class="field" data-name="phone">
+            <label class="lbl" for="phone">เบอร์โทรศัพท์ <span class="req">*</span></label>
+            <input type="tel" id="phone" name="phone" placeholder="0812345678" maxlength="10" inputmode="numeric">
+            <p class="hint">ตัวเลข 10 หลัก ขึ้นต้นด้วย 0 ไม่ต้องใส่ขีดคั่น</p>
+            <p class="msg"></p>
+          </div>
+          <div class="field" data-name="natid">
+            <label class="lbl" for="natid">เลขบัตรประจำตัวประชาชน <span class="req">*</span></label>
+            <input type="text" id="natid" name="natid" placeholder="1234567890121" maxlength="13" inputmode="numeric">
+            <p class="hint">ตัวเลข 13 หลัก ระบบตรวจสอบหลักตรวจสอบ (check digit) ให้อัตโนมัติ</p>
+            <p class="msg"></p>
+          </div>
+        </div>
+
+        <div class="row two" style="margin-top:18px">
+          <div class="field" data-name="dob">
+            <label class="lbl" for="dob">วัน/เดือน/ปีเกิด <span class="req">*</span></label>
+            <input type="date" id="dob" name="dob">
+            <p class="hint">ผู้สมัครต้องมีอายุครบ 18 ปีบริบูรณ์ ณ วันที่สมัคร</p>
+            <p class="msg"></p>
+          </div>
+          <div class="field" data-name="experience">
+            <label class="lbl" for="experience">ประสบการณ์ด้านโบราณคดี <span class="req">*</span></label>
+            <select id="experience" name="experience">
+              <option value="">— เลือกระดับประสบการณ์ —</option>
+              <option value="none">ไม่มีประสบการณ์</option>
+              <option value="amateur">มือสมัครเล่น (ไม่เกิน 1 ปี)</option>
+              <option value="mid">ระดับกลาง (1–5 ปี)</option>
+              <option value="pro">มืออาชีพ (มากกว่า 5 ปี)</option>
+            </select>
+            <p class="hint">ใช้จัดกลุ่มภาคสนามและมอบหมายพี่เลี้ยง</p>
+            <p class="msg"></p>
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend><span class="num">02</span> บัญชีผู้ใช้</legend>
+        <p class="legend-note">ใช้เข้าสู่ระบบติดตามสถานะใบสมัครและดาวน์โหลดเอกสารภาคสนาม</p>
+        <div class="row two">
+          <div class="field" data-name="pwd">
+            <label class="lbl" for="pwd">รหัสผ่าน <span class="req">*</span></label>
+            <input type="password" id="pwd" name="pwd" placeholder="อย่างน้อย 8 ตัวอักษร">
+            <div class="bars" id="bars"><i></i><i></i><i></i></div>
+            <p class="hint">ต้องยาวอย่างน้อย 8 ตัว และมีทั้งตัวอักษรและตัวเลข</p>
+            <p class="msg"></p>
+          </div>
+          <div class="field" data-name="pwd2">
+            <label class="lbl" for="pwd2">ยืนยันรหัสผ่าน <span class="req">*</span></label>
+            <input type="password" id="pwd2" name="pwd2" placeholder="พิมพ์รหัสผ่านอีกครั้ง">
+            <p class="hint">ต้องตรงกับรหัสผ่านด้านซ้ายทุกตัวอักษร</p>
+            <p class="msg"></p>
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend><span class="num">03</span> เอกสารยืนยันตัวตน</legend>
+        <p class="legend-note">แนบสำเนาหนังสือเดินทางหรือบัตรประชาชน เพื่อขอวีซ่าภาคสนามล่วงหน้า</p>
+        <div class="field" data-name="doc">
+          <label class="lbl" for="doc">ไฟล์เอกสาร <span class="req">*</span></label>
+          <div class="drop" id="drop" tabindex="0" role="button" aria-controls="doc">
+            <div class="big">คลิกเพื่อเลือกไฟล์ หรือลากไฟล์มาวางที่นี่</div>
+            <div class="small">รองรับ JPG, PNG, PDF · ขนาดไม่เกิน 2 MB</div>
+            <input type="file" id="doc" name="doc" accept=".jpg,.jpeg,.png,.pdf">
+          </div>
+          <div class="filechip" id="filechip">
+            <span class="nm" id="fileName"></span>
+            <span class="sz" id="fileSize"></span>
+            <button type="button" id="fileClear" aria-label="ลบไฟล์">×</button>
+          </div>
+          <p class="msg"></p>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend><span class="num">04</span> ความถนัดและพื้นที่ปฏิบัติงาน</legend>
+        <p class="legend-note">เลือกได้มากกว่า 1 ข้อในแต่ละหัวข้อ อย่างน้อยหัวข้อละ 1 รายการ</p>
+
+        <div class="field" data-name="roles">
+          <label class="lbl">บทบาทที่ต้องการในคณะสำรวจ <span class="req">*</span></label>
+          <div class="chips">
+            <label class="chip"><input type="checkbox" name="roles" value="นักวิจัย"><span>นักวิจัย</span></label>
+            <label class="chip"><input type="checkbox" name="roles" value="ช่างภาพ"><span>ช่างภาพ</span></label>
+            <label class="chip"><input type="checkbox" name="roles" value="นักบินโดรน"><span>นักบินโดรน</span></label>
+            <label class="chip"><input type="checkbox" name="roles" value="นักทำแผนที่"><span>นักทำแผนที่</span></label>
+            <label class="chip"><input type="checkbox" name="roles" value="แพทย์สนาม"><span>แพทย์สนาม</span></label>
+            <label class="chip"><input type="checkbox" name="roles" value="ฝ่ายพัสดุ"><span>ฝ่ายพัสดุ</span></label>
+          </div>
+          <p class="msg"></p>
+        </div>
+
+        <div class="field" data-name="regions" style="margin-top:20px">
+          <label class="lbl">ภูมิภาคที่ต้องการออกสำรวจ <span class="req">*</span></label>
+          <div class="chips">
+            <label class="chip"><input type="checkbox" name="regions" value="อเมริกาใต้"><span>อเมริกาใต้</span></label>
+            <label class="chip"><input type="checkbox" name="regions" value="แอฟริกา"><span>แอฟริกา</span></label>
+            <label class="chip"><input type="checkbox" name="regions" value="เอเชีย"><span>เอเชีย</span></label>
+            <label class="chip"><input type="checkbox" name="regions" value="ยุโรป"><span>ยุโรป</span></label>
+            <label class="chip"><input type="checkbox" name="regions" value="ออสเตรเลีย"><span>ออสเตรเลีย</span></label>
+          </div>
+          <p class="msg"></p>
+        </div>
+
+        <div class="field" data-name="salary" style="margin-top:22px">
+          <div class="slider-head">
+            <label class="lbl" for="salary">ค่าตอบแทนที่ต้องการต่อสัปดาห์ (USD)</label>
+            <span class="slider-val" id="salaryVal">$500</span>
+          </div>
+          <input type="range" id="salary" name="salary" min="100" max="5000" step="50" value="500">
+          <div class="scale"><span>$100</span><span>$5,000</span></div>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend><span class="num">05</span> การติดต่อและข้อมูลเพิ่มเติม</legend>
+        <p class="legend-note">ระบุช่องทางที่สะดวกให้ทีมประสานงานติดต่อกลับ</p>
+
+        <div class="field" data-name="contacts">
+          <label class="lbl">ช่องทางติดต่อที่สะดวก <span class="req">*</span></label>
+          <div class="chips">
+            <label class="chip"><input type="checkbox" name="contacts" value="อีเมล"><span>อีเมล</span></label>
+            <label class="chip"><input type="checkbox" name="contacts" value="โทรศัพท์"><span>โทรศัพท์</span></label>
+            <label class="chip"><input type="checkbox" name="contacts" value="LINE"><span>LINE</span></label>
+            <label class="chip"><input type="checkbox" name="contacts" value="WhatsApp"><span>WhatsApp</span></label>
+            <label class="chip"><input type="checkbox" name="contacts" value="Telegram"><span>Telegram</span></label>
+          </div>
+          <p class="msg"></p>
+        </div>
+
+        <div class="field" data-name="note" style="margin-top:20px">
+          <label class="lbl" for="note">ข้อมูลเพิ่มเติม</label>
+          <textarea id="note" name="note" placeholder="โรคประจำตัว ข้อจำกัดด้านอาหาร ทักษะพิเศษ หรือคำถามถึงทีมงาน"></textarea>
+          <div class="count" id="noteCount">0 / 300</div>
+          <p class="msg"></p>
+        </div>
+
+        <div class="field" data-name="terms" style="margin-top:18px">
+          <label class="checkline">
+            <input type="checkbox" id="terms" name="terms">
+            <span>ข้าพเจ้ายอมรับ<b> เงื่อนไขการเข้าร่วมภารกิจ </b>และรับรองว่าข้อมูลทั้งหมดเป็นความจริง <span class="req">*</span></span>
+          </label>
+          <p class="msg"></p>
+        </div>
+      </fieldset>
+
+      <div class="actions">
+        <button type="submit" class="btn primary" id="submitBtn">ส่งใบสมัคร</button>
+        <button type="button" class="btn ghost" id="clearBtn">ล้างข้อมูล</button>
+        <span class="formnote">ช่องที่มีเครื่องหมาย <span class="req">*</span> จำเป็นต้องกรอก</span>
+      </div>
+    </form>
+
+    <aside class="side">
+      <div class="panel box">
+        <div class="ring">
+          <svg width="62" height="62" viewBox="0 0 62 62" aria-hidden="true">
+            <circle class="trk" cx="31" cy="31" r="26" fill="none" stroke-width="5"></circle>
+            <circle class="bar" id="ringBar" cx="31" cy="31" r="26" fill="none" stroke-width="5" stroke-dasharray="0 164"></circle>
+          </svg>
+          <div>
+            <div class="pct" id="pctText">0%</div>
+            <div class="cap">ความคืบหน้าการกรอกข้อมูล</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel box">
+        <h3>รายการตรวจสอบ</h3>
+        <ul class="steps" id="steps">
+          <li data-step="ident"><span class="dot"></span>ข้อมูลผู้สมัคร</li>
+          <li data-step="account"><span class="dot"></span>บัญชีผู้ใช้</li>
+          <li data-step="doc"><span class="dot"></span>เอกสารยืนยันตัวตน</li>
+          <li data-step="skill"><span class="dot"></span>ความถนัดและพื้นที่</li>
+          <li data-step="contact"><span class="dot"></span>การติดต่อและเงื่อนไข</li>
+        </ul>
+      </div>
+
+      <div class="panel box">
+        <h3>สำหรับผู้ทดสอบ (Tester)</h3>
+        <p class="meta">หน้านี้จัดทำขึ้นเพื่อฝึกการทดสอบซอฟต์แวร์ <b>มีข้อผิดพลาดซ่อนอยู่ 2 จุด</b>ในส่วนของการตรวจสอบข้อมูล ลองออกแบบเทสเคสแบบ Equivalence Partition และ Boundary Value เพื่อค้นหาให้เจอ แล้วบันทึกเป็น Bug Report</p>
+      </div>
+    </aside>
+  </div>
+
+  <footer class="credit">
+    จัดทำโดย <b id="creditName">66040233151 ฐานทรัพย์ หาญเชิงชัย</b> · รายวิชาการทดสอบซอฟต์แวร์
+  </footer>
+</div>
+
+<div class="veil" id="veil" role="dialog" aria-modal="true" aria-labelledby="okTitle">
+  <div class="modal">
+    <div class="top">
+      <div class="tick" aria-hidden="true"></div>
+      <h2 id="okTitle">ส่งใบสมัครเรียบร้อย</h2>
+      <p class="lead">ทีมประสานงานจะติดต่อกลับภายใน 7 วันทำการ</p>
+    </div>
+    <dl id="summary"></dl>
+    <div class="foot"><button type="button" class="btn ghost" id="closeModal">ปิดหน้าต่าง</button></div>
+  </div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  var $ = function(s,r){ return (r||document).querySelector(s); };
+  var $$ = function(s,r){ return Array.prototype.slice.call((r||document).querySelectorAll(s)); };
+
+  var frm = $("#frm");
+  var doc = $("#doc");
+  var salary = $("#salary");
+  var veil = $("#veil");
+  var noteCount = $("#noteCount");
+
+  function fieldOf(n){ return $('.field[data-name="'+n+'"]'); }
+  function picked(n){ return $$('input[name="'+n+'"]:checked').map(function(i){ return i.value; }); }
+
+  /* ---------- Thai national ID check digit ---------- */
+  function validThaiId(v){
+    if(!/^\d{13}$/.test(v)) return false;
+    var sum = 0;
+    for(var i=0;i<12;i++){ sum += parseInt(v.charAt(i),10) * (13-i); }
+    return ((11 - (sum % 11)) % 10) === parseInt(v.charAt(12),10);
+  }
+
+  /* ---------- rules: return an error message, or null when valid ---------- */
+  var RULES = {
+    fullname: function(){
+      var v = $("#fullname").value.trim();
+      if(!v) return "กรุณากรอกชื่อ-นามสกุล";
+      if(v.length < 4) return "ชื่อ-นามสกุลสั้นเกินไป (อย่างน้อย 4 ตัวอักษร)";
+      if(!/^[฀-๿a-zA-Z']+(\s+[฀-๿a-zA-Z']+)+$/.test(v))
+        return "กรอกทั้งชื่อและนามสกุล โดยใช้ตัวอักษรเท่านั้น";
+      return null;
+    },
+    email: function(){
+      var v = $("#email").value.trim();
+      if(!v) return "กรุณากรอกอีเมล";
+      if(!/^[^\s@]+@[^\s@]+\.[A-Za-z]{2,}$/.test(v)) return "รูปแบบอีเมลไม่ถูกต้อง เช่น name@example.com";
+      return null;
+    },
+    phone: function(){
+      var v = $("#phone").value.trim();
+      if(!v) return "กรุณากรอกเบอร์โทรศัพท์";
+      if(!/^0\d{8,}$/.test(v)) return "เบอร์โทรศัพท์ต้องเป็นตัวเลข 10 หลัก และขึ้นต้นด้วย 0";
+      return null;
+    },
+    natid: function(){
+      var v = $("#natid").value.trim();
+      if(!v) return "กรุณากรอกเลขบัตรประจำตัวประชาชน";
+      if(!/^\d{13}$/.test(v)) return "ต้องเป็นตัวเลข 13 หลัก";
+      if(!validThaiId(v)) return "เลขบัตรประชาชนไม่ถูกต้อง (หลักตรวจสอบไม่ตรง)";
+      return null;
+    },
+    dob: function(){
+      var v = $("#dob").value;
+      if(!v) return "กรุณาเลือกวันเกิด";
+      var d = new Date(v), now = new Date();
+      if(isNaN(d.getTime())) return "รูปแบบวันที่ไม่ถูกต้อง";
+      if(d > now) return "วันเกิดต้องไม่เป็นวันในอนาคต";
+      var age = now.getFullYear() - d.getFullYear();
+      if(age < 18) return "ผู้สมัครต้องมีอายุครบ 18 ปีบริบูรณ์";
+      if(age > 80) return "กรุณาตรวจสอบปีเกิดอีกครั้ง";
+      return null;
+    },
+    experience: function(){
+      return $("#experience").value ? null : "กรุณาเลือกระดับประสบการณ์";
+    },
+    pwd: function(){
+      var v = $("#pwd").value;
+      if(!v) return "กรุณากรอกรหัสผ่าน";
+      if(v.length < 8) return "รหัสผ่านต้องยาวอย่างน้อย 8 ตัวอักษร";
+      if(!/[A-Za-z]/.test(v) || !/\d/.test(v)) return "รหัสผ่านต้องมีทั้งตัวอักษรและตัวเลข";
+      return null;
+    },
+    pwd2: function(){
+      var b = $("#pwd2").value;
+      if(!b) return "กรุณายืนยันรหัสผ่าน";
+      if($("#pwd").value !== b) return "รหัสผ่านทั้งสองช่องไม่ตรงกัน";
+      return null;
+    },
+    doc: function(){
+      var f = doc.files[0];
+      if(!f) return "กรุณาแนบไฟล์เอกสารยืนยันตัวตน";
+      if(!/\.(jpe?g|png|pdf)$/i.test(f.name)) return "รองรับเฉพาะไฟล์ JPG, PNG และ PDF";
+      if(f.size > 2*1024*1024) return "ไฟล์ใหญ่เกิน 2 MB กรุณาลดขนาดไฟล์";
+      return null;
+    },
+    roles: function(){
+      return picked("roles").length ? null : "เลือกบทบาทอย่างน้อย 1 รายการ";
+    },
+    regions: function(){
+      return picked("regions").length ? null : "เลือกภูมิภาคอย่างน้อย 1 รายการ";
+    },
+    contacts: function(){
+      return picked("contacts").length ? null : "เลือกช่องทางติดต่ออย่างน้อย 1 รายการ";
+    },
+    note: function(){
+      return $("#note").value.length > 300 ? "ข้อความยาวเกิน 300 ตัวอักษร" : null;
+    },
+    terms: function(){
+      return $("#terms").checked ? null : "กรุณายอมรับเงื่อนไขก่อนส่งใบสมัคร";
+    }
+  };
+
+  var ORDER = ["fullname","email","phone","natid","dob","experience","pwd","pwd2","doc","roles","regions","contacts","note","terms"];
+  var REQUIRED = ["fullname","email","phone","natid","dob","experience","pwd","pwd2","doc","roles","regions","contacts","terms"];
+  var STEPS = {
+    ident:["fullname","email","phone","natid","dob","experience"],
+    account:["pwd","pwd2"],
+    doc:["doc"],
+    skill:["roles","regions"],
+    contact:["contacts","terms"]
+  };
+
+  function quiet(n){ return RULES[n]() === null; }
+
+  function show(n){
+    var f = fieldOf(n); if(!f) return true;
+    var err = RULES[n]();
+    var m = $(".msg", f);
+    f.classList.remove("bad","good");
+    if(err){ f.classList.add("bad"); if(m) m.textContent = err; }
+    else {
+      if(m) m.textContent = "";
+      if(n !== "note" || $("#note").value.length) f.classList.add("good");
+    }
+    return !err;
+  }
+
+  function reset(n){
+    var f = fieldOf(n); if(!f) return;
+    f.classList.remove("bad","good");
+    var m = $(".msg", f); if(m) m.textContent = "";
+  }
+
+  var CIRC = 2 * Math.PI * 26;
+  function updateProgress(){
+    var done = 0;
+    REQUIRED.forEach(function(n){ if(quiet(n)) done++; });
+    var pct = Math.round(done / REQUIRED.length * 100);
+    $("#pctText").textContent = pct + "%";
+    $("#ringBar").setAttribute("stroke-dasharray", (CIRC*pct/100).toFixed(1) + " " + CIRC.toFixed(1));
+    Object.keys(STEPS).forEach(function(k){
+      var li = $('.steps li[data-step="'+k+'"]');
+      if(li) li.classList.toggle("done", STEPS[k].every(quiet));
+    });
+  }
+
+  /* ---------- live wiring ---------- */
+  ["fullname","email","phone","natid","pwd","pwd2","note"].forEach(function(id){
+    var el = $("#"+id);
+    el.addEventListener("blur", function(){ show(id); updateProgress(); });
+    el.addEventListener("input", function(){
+      if(fieldOf(id).classList.contains("bad")) show(id);
+      updateProgress();
+    });
+  });
+  ["dob","experience"].forEach(function(id){
+    $("#"+id).addEventListener("change", function(){ show(id); updateProgress(); });
+  });
+  $$('input[name="roles"],input[name="regions"],input[name="contacts"]').forEach(function(cb){
+    cb.addEventListener("change", function(){ show(cb.name); updateProgress(); });
+  });
+  $("#terms").addEventListener("change", function(){ show("terms"); updateProgress(); });
+  $("#pwd").addEventListener("input", function(){
+    if(fieldOf("pwd2").classList.contains("bad") || $("#pwd2").value) show("pwd2");
+  });
+
+  $("#phone").addEventListener("input", function(){ this.value = this.value.replace(/\D/g,""); });
+  $("#natid").addEventListener("input", function(){ this.value = this.value.replace(/\D/g,""); });
+
+  /* password strength meter */
+  $("#pwd").addEventListener("input", function(){
+    var v = this.value, s = 0;
+    if(v.length >= 8) s++;
+    if(/[A-Za-z]/.test(v) && /\d/.test(v)) s++;
+    if(v.length >= 12 && /[^A-Za-z0-9]/.test(v)) s++;
+    $$("#bars i").forEach(function(b,i){ b.className = (i < s) ? "on"+s : ""; });
+  });
+
+  /* note counter */
+  $("#note").addEventListener("input", function(){
+    var n = this.value.length;
+    noteCount.textContent = n + " / 300";
+    noteCount.classList.toggle("warn", n > 300);
+  });
+
+  /* salary slider */
+  function paintSlider(){
+    var pct = (salary.value - salary.min) / (salary.max - salary.min) * 100;
+    salary.style.setProperty("--pct", pct + "%");
+    $("#salaryVal").textContent = "$" + Number(salary.value).toLocaleString("en-US");
+  }
+  salary.addEventListener("input", paintSlider);
+  paintSlider();
+
+  /* file upload */
+  var drop = $("#drop"), chip = $("#filechip");
+  function showFile(){
+    var f = doc.files[0];
+    if(!f){ chip.classList.remove("on"); return; }
+    chip.classList.add("on");
+    $("#fileName").textContent = f.name;
+    $("#fileSize").textContent = (f.size/1024).toFixed(0) + " KB";
+  }
+  drop.addEventListener("click", function(){ doc.click(); });
+  drop.addEventListener("keydown", function(e){
+    if(e.key === "Enter" || e.key === " "){ e.preventDefault(); doc.click(); }
+  });
+  drop.addEventListener("dragover", function(e){ e.preventDefault(); drop.classList.add("over"); });
+  drop.addEventListener("dragleave", function(){ drop.classList.remove("over"); });
+  drop.addEventListener("drop", function(e){
+    e.preventDefault(); drop.classList.remove("over");
+    if(e.dataTransfer.files.length){ doc.files = e.dataTransfer.files; showFile(); show("doc"); updateProgress(); }
+  });
+  doc.addEventListener("change", function(){ showFile(); show("doc"); updateProgress(); });
+  $("#fileClear").addEventListener("click", function(){
+    doc.value = ""; showFile(); show("doc"); updateProgress();
+  });
+
+  /* ---------- submit ---------- */
+  frm.addEventListener("submit", function(e){
+    e.preventDefault();
+    var firstBad = null;
+    ORDER.forEach(function(n){ if(!show(n) && !firstBad) firstBad = n; });
+    updateProgress();
+    if(firstBad){
+      var f = fieldOf(firstBad);
+      f.classList.add("shake");
+      setTimeout(function(){ f.classList.remove("shake"); }, 420);
+      var el = $("input,select,textarea", f);
+      if(el) el.focus({preventScroll:true});
+      f.scrollIntoView({behavior:"smooth", block:"center"});
+      return;
+    }
+    var file = doc.files[0];
+    var rows = [
+      ["ชื่อ-นามสกุล", $("#fullname").value.trim()],
+      ["อีเมล", $("#email").value.trim()],
+      ["โทรศัพท์", $("#phone").value.trim()],
+      ["เลขบัตรประชาชน", $("#natid").value.replace(/^(\d{4})\d{5}(\d{4})$/, "$1•••••$2")],
+      ["วันเกิด", $("#dob").value],
+      ["ประสบการณ์", $("#experience").options[$("#experience").selectedIndex].text],
+      ["เอกสารแนบ", file ? file.name : "-"],
+      ["บทบาท", picked("roles").join(", ")],
+      ["ภูมิภาค", picked("regions").join(", ")],
+      ["ค่าตอบแทน", "$" + Number(salary.value).toLocaleString("en-US") + " / สัปดาห์"],
+      ["ช่องทางติดต่อ", picked("contacts").join(", ")],
+      ["ข้อมูลเพิ่มเติม", $("#note").value.trim() || "-"]
+    ];
+    var dl = $("#summary");
+    dl.innerHTML = "";
+    rows.forEach(function(r){
+      var dt = document.createElement("dt"); dt.textContent = r[0];
+      var dd = document.createElement("dd"); dd.textContent = r[1];
+      dl.appendChild(dt); dl.appendChild(dd);
+    });
+    veil.classList.add("on");
+    $("#closeModal").focus();
+  });
+
+  $("#closeModal").addEventListener("click", function(){ veil.classList.remove("on"); });
+  veil.addEventListener("click", function(e){ if(e.target === veil) veil.classList.remove("on"); });
+  document.addEventListener("keydown", function(e){ if(e.key === "Escape") veil.classList.remove("on"); });
+
+  /* ---------- clear form ---------- */
+  $("#clearBtn").addEventListener("click", function(){
+    frm.reset();
+    ORDER.forEach(reset);
+    doc.value = ""; showFile();
+    paintSlider();
+    noteCount.textContent = "0 / 300";
+    noteCount.classList.remove("warn");
+    $$("#bars i").forEach(function(b){ b.className = ""; });
+    updateProgress();
+    $("#fullname").focus();
+  });
+
+  updateProgress();
+  ORDER.forEach(reset);
+})();
+</script>
+</body>
+</html>

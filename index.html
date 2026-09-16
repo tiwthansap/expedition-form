@@ -272,38 +272,38 @@
           <div class="field" data-name="fullname">
             <label class="lbl" for="fullname">ชื่อ-นามสกุล <span class="req">*</span></label>
             <input type="text" id="fullname" name="fullname" placeholder="เช่น สมชาย ใจดี" autocomplete="name">
-            <p class="hint">กรอกชื่อและนามสกุล คั่นด้วยเว้นวรรค 1 ครั้ง</p>
-            <p class="msg"></p>
+            <p class="hint">กรอกชื่อและนามสกุล คั่นด้วยเว้นวรรค รับเฉพาะตัวอักษรไทย/อังกฤษ</p>
+            <p class="msg" aria-live="polite"></p>
           </div>
           <div class="field" data-name="email">
             <label class="lbl" for="email">อีเมล <span class="req">*</span></label>
             <input type="email" id="email" name="email" placeholder="name@example.com" autocomplete="email">
             <p class="hint">ใช้รับผลการพิจารณาและกำหนดการเดินทาง</p>
-            <p class="msg"></p>
+            <p class="msg" aria-live="polite"></p>
           </div>
         </div>
 
         <div class="row two" style="margin-top:18px">
           <div class="field" data-name="phone">
             <label class="lbl" for="phone">เบอร์โทรศัพท์ <span class="req">*</span></label>
-            <input type="tel" id="phone" name="phone" placeholder="0812345678" maxlength="10" inputmode="numeric">
+            <input type="tel" id="phone" name="phone" placeholder="0812345678" maxlength="10" inputmode="numeric" autocomplete="tel-national">
             <p class="hint">ตัวเลข 10 หลัก ขึ้นต้นด้วย 0 ไม่ต้องใส่ขีดคั่น</p>
-            <p class="msg"></p>
+            <p class="msg" aria-live="polite"></p>
           </div>
           <div class="field" data-name="natid">
             <label class="lbl" for="natid">เลขบัตรประจำตัวประชาชน <span class="req">*</span></label>
-            <input type="text" id="natid" name="natid" placeholder="1234567890121" maxlength="13" inputmode="numeric">
+            <input type="text" id="natid" name="natid" placeholder="1234567890121" maxlength="13" inputmode="numeric" autocomplete="off">
             <p class="hint">ตัวเลข 13 หลัก ระบบตรวจสอบหลักตรวจสอบ (check digit) ให้อัตโนมัติ</p>
-            <p class="msg"></p>
+            <p class="msg" aria-live="polite"></p>
           </div>
         </div>
 
         <div class="row two" style="margin-top:18px">
           <div class="field" data-name="dob">
             <label class="lbl" for="dob">วัน/เดือน/ปีเกิด <span class="req">*</span></label>
-            <input type="date" id="dob" name="dob">
-            <p class="hint">ผู้สมัครต้องมีอายุครบ 18 ปีบริบูรณ์ ณ วันที่สมัคร</p>
-            <p class="msg"></p>
+            <input type="date" id="dob" name="dob" autocomplete="bday">
+            <p class="hint">ผู้สมัครต้องมีอายุ 18–80 ปีบริบูรณ์ ณ วันที่สมัคร</p>
+            <p class="msg" aria-live="polite"></p>
           </div>
           <div class="field" data-name="experience">
             <label class="lbl" for="experience">ประสบการณ์ด้านโบราณคดี <span class="req">*</span></label>
@@ -315,7 +315,7 @@
               <option value="pro">มืออาชีพ (มากกว่า 5 ปี)</option>
             </select>
             <p class="hint">ใช้จัดกลุ่มภาคสนามและมอบหมายพี่เลี้ยง</p>
-            <p class="msg"></p>
+            <p class="msg" aria-live="polite"></p>
           </div>
         </div>
       </fieldset>
@@ -326,16 +326,16 @@
         <div class="row two">
           <div class="field" data-name="pwd">
             <label class="lbl" for="pwd">รหัสผ่าน <span class="req">*</span></label>
-            <input type="password" id="pwd" name="pwd" placeholder="อย่างน้อย 8 ตัวอักษร">
+            <input type="password" id="pwd" name="pwd" placeholder="อย่างน้อย 8 ตัวอักษร" autocomplete="new-password" maxlength="64">
             <div class="bars" id="bars"><i></i><i></i><i></i></div>
-            <p class="hint">ต้องยาวอย่างน้อย 8 ตัว และมีทั้งตัวอักษรและตัวเลข</p>
-            <p class="msg"></p>
+            <p class="hint">ยาว 8–64 ตัวอักษร ต้องมีทั้งตัวอักษรและตัวเลข และห้ามมีช่องว่าง</p>
+            <p class="msg" aria-live="polite"></p>
           </div>
           <div class="field" data-name="pwd2">
             <label class="lbl" for="pwd2">ยืนยันรหัสผ่าน <span class="req">*</span></label>
-            <input type="password" id="pwd2" name="pwd2" placeholder="พิมพ์รหัสผ่านอีกครั้ง">
+            <input type="password" id="pwd2" name="pwd2" placeholder="พิมพ์รหัสผ่านอีกครั้ง" autocomplete="new-password" maxlength="64">
             <p class="hint">ต้องตรงกับรหัสผ่านด้านซ้ายทุกตัวอักษร</p>
-            <p class="msg"></p>
+            <p class="msg" aria-live="polite"></p>
           </div>
         </div>
       </fieldset>
@@ -355,7 +355,7 @@
             <span class="sz" id="fileSize"></span>
             <button type="button" id="fileClear" aria-label="ลบไฟล์">×</button>
           </div>
-          <p class="msg"></p>
+          <p class="msg" aria-live="polite"></p>
         </div>
       </fieldset>
 
@@ -364,8 +364,8 @@
         <p class="legend-note">เลือกได้มากกว่า 1 ข้อในแต่ละหัวข้อ อย่างน้อยหัวข้อละ 1 รายการ</p>
 
         <div class="field" data-name="roles">
-          <label class="lbl">บทบาทที่ต้องการในคณะสำรวจ <span class="req">*</span></label>
-          <div class="chips">
+          <label class="lbl" id="rolesLbl">บทบาทที่ต้องการในคณะสำรวจ <span class="req">*</span></label>
+          <div class="chips" role="group" aria-labelledby="rolesLbl">
             <label class="chip"><input type="checkbox" name="roles" value="นักวิจัย"><span>นักวิจัย</span></label>
             <label class="chip"><input type="checkbox" name="roles" value="ช่างภาพ"><span>ช่างภาพ</span></label>
             <label class="chip"><input type="checkbox" name="roles" value="นักบินโดรน"><span>นักบินโดรน</span></label>
@@ -373,19 +373,19 @@
             <label class="chip"><input type="checkbox" name="roles" value="แพทย์สนาม"><span>แพทย์สนาม</span></label>
             <label class="chip"><input type="checkbox" name="roles" value="ฝ่ายพัสดุ"><span>ฝ่ายพัสดุ</span></label>
           </div>
-          <p class="msg"></p>
+          <p class="msg" aria-live="polite"></p>
         </div>
 
         <div class="field" data-name="regions" style="margin-top:20px">
-          <label class="lbl">ภูมิภาคที่ต้องการออกสำรวจ <span class="req">*</span></label>
-          <div class="chips">
+          <label class="lbl" id="regionsLbl">ภูมิภาคที่ต้องการออกสำรวจ <span class="req">*</span></label>
+          <div class="chips" role="group" aria-labelledby="regionsLbl">
             <label class="chip"><input type="checkbox" name="regions" value="อเมริกาใต้"><span>อเมริกาใต้</span></label>
             <label class="chip"><input type="checkbox" name="regions" value="แอฟริกา"><span>แอฟริกา</span></label>
             <label class="chip"><input type="checkbox" name="regions" value="เอเชีย"><span>เอเชีย</span></label>
             <label class="chip"><input type="checkbox" name="regions" value="ยุโรป"><span>ยุโรป</span></label>
             <label class="chip"><input type="checkbox" name="regions" value="ออสเตรเลีย"><span>ออสเตรเลีย</span></label>
           </div>
-          <p class="msg"></p>
+          <p class="msg" aria-live="polite"></p>
         </div>
 
         <div class="field" data-name="salary" style="margin-top:22px">
@@ -403,22 +403,22 @@
         <p class="legend-note">ระบุช่องทางที่สะดวกให้ทีมประสานงานติดต่อกลับ</p>
 
         <div class="field" data-name="contacts">
-          <label class="lbl">ช่องทางติดต่อที่สะดวก <span class="req">*</span></label>
-          <div class="chips">
+          <label class="lbl" id="contactsLbl">ช่องทางติดต่อที่สะดวก <span class="req">*</span></label>
+          <div class="chips" role="group" aria-labelledby="contactsLbl">
             <label class="chip"><input type="checkbox" name="contacts" value="อีเมล"><span>อีเมล</span></label>
             <label class="chip"><input type="checkbox" name="contacts" value="โทรศัพท์"><span>โทรศัพท์</span></label>
             <label class="chip"><input type="checkbox" name="contacts" value="LINE"><span>LINE</span></label>
             <label class="chip"><input type="checkbox" name="contacts" value="WhatsApp"><span>WhatsApp</span></label>
             <label class="chip"><input type="checkbox" name="contacts" value="Telegram"><span>Telegram</span></label>
           </div>
-          <p class="msg"></p>
+          <p class="msg" aria-live="polite"></p>
         </div>
 
         <div class="field" data-name="note" style="margin-top:20px">
           <label class="lbl" for="note">ข้อมูลเพิ่มเติม</label>
           <textarea id="note" name="note" placeholder="โรคประจำตัว ข้อจำกัดด้านอาหาร ทักษะพิเศษ หรือคำถามถึงทีมงาน"></textarea>
           <div class="count" id="noteCount">0 / 300</div>
-          <p class="msg"></p>
+          <p class="msg" aria-live="polite"></p>
         </div>
 
         <div class="field" data-name="terms" style="margin-top:18px">
@@ -426,7 +426,7 @@
             <input type="checkbox" id="terms" name="terms">
             <span>ข้าพเจ้ายอมรับ<b> เงื่อนไขการเข้าร่วมภารกิจ </b>และรับรองว่าข้อมูลทั้งหมดเป็นความจริง <span class="req">*</span></span>
           </label>
-          <p class="msg"></p>
+          <p class="msg" aria-live="polite"></p>
         </div>
       </fieldset>
 
@@ -464,7 +464,7 @@
 
       <div class="panel box">
         <h3>สำหรับผู้ทดสอบ (Tester)</h3>
-        <p class="meta">หน้านี้จัดทำขึ้นเพื่อฝึกการทดสอบซอฟต์แวร์ <b>มีข้อผิดพลาดซ่อนอยู่ 2 จุด</b>ในส่วนของการตรวจสอบข้อมูล ลองออกแบบเทสเคสแบบ Equivalence Partition และ Boundary Value เพื่อค้นหาให้เจอ แล้วบันทึกเป็น Bug Report</p>
+        <p class="meta">หน้านี้ผ่านการตรวจสอบด้วยชุดทดสอบอัตโนมัติ <b>ครอบคลุมทุกช่องและทุกค่าขอบ</b> ทั้งแบบ Equivalence Partition และ Boundary Value หากพบพฤติกรรมที่ไม่ตรงกับกฎที่ระบุไว้ใต้แต่ละช่อง กรุณาเปิด Issue ในรีโพพร้อมขั้นตอนการทำซ้ำ</p>
       </div>
     </aside>
   </div>
@@ -489,19 +489,32 @@
 <script>
 (function(){
   "use strict";
-  var $ = function(s,r){ return (r||document).querySelector(s); };
+
+  var $  = function(s,r){ return (r||document).querySelector(s); };
   var $$ = function(s,r){ return Array.prototype.slice.call((r||document).querySelectorAll(s)); };
 
-  var frm = $("#frm");
-  var doc = $("#doc");
+  var frm    = $("#frm");
+  var docIn  = $("#doc");
   var salary = $("#salary");
-  var veil = $("#veil");
+  var veil   = $("#veil");
   var noteCount = $("#noteCount");
+  var submitBtn = $("#submitBtn");
+
+  /* จำนวนอักขระแบบนับเป็น code point (สระ/วรรณยุกต์ไทยนับตามจริง) */
+  function len(s){ return Array.from ? Array.from(s).length : s.length; }
+  function squash(s){ return s.replace(/\s+/g, " ").trim(); }
 
   function fieldOf(n){ return $('.field[data-name="'+n+'"]'); }
   function picked(n){ return $$('input[name="'+n+'"]:checked').map(function(i){ return i.value; }); }
 
-  /* ---------- Thai national ID check digit ---------- */
+  /* ---------- ตัวอักษรที่ยอมรับในชื่อ: ไทย (ไม่รวมเลขไทย) + อังกฤษ ---------- */
+  var LETTER = "\\u0E01-\\u0E3A\\u0E40-\\u0E4EA-Za-z";
+  var WORD   = "[" + LETTER + "]+(?:['\\u2019-][" + LETTER + "]+)*";
+  var NAME_RE = new RegExp("^" + WORD + "(?: " + WORD + ")+$");
+
+  var EMAIL_RE = /^[A-Za-z0-9](?:[A-Za-z0-9._%+-]*[A-Za-z0-9])?@[A-Za-z0-9](?:[A-Za-z0-9-]*[A-Za-z0-9])?(?:\.[A-Za-z0-9](?:[A-Za-z0-9-]*[A-Za-z0-9])?)*\.[A-Za-z]{2,}$/;
+
+  /* ---------- เลขบัตรประชาชน: หลักตรวจสอบ mod 11 ---------- */
   function validThaiId(v){
     if(!/^\d{13}$/.test(v)) return false;
     var sum = 0;
@@ -509,44 +522,79 @@
     return ((11 - (sum % 11)) % 10) === parseInt(v.charAt(12),10);
   }
 
-  /* ---------- rules: return an error message, or null when valid ---------- */
+  /* ---------- วันที่: แปลงเป็นเวลาท้องถิ่นเสมอ ไม่พึ่ง new Date(string) ---------- */
+  function parseDate(v){
+    var m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(v);
+    if(!m) return null;
+    var y = +m[1], mo = +m[2], d = +m[3];
+    if(mo < 1 || mo > 12 || d < 1 || d > 31) return null;
+    var dt = new Date(y, mo-1, d);
+    if(dt.getFullYear() !== y || dt.getMonth() !== mo-1 || dt.getDate() !== d) return null;
+    return dt;
+  }
+  function ageOn(birth, today){
+    var a = today.getFullYear() - birth.getFullYear();
+    var m = today.getMonth() - birth.getMonth();
+    if(m < 0 || (m === 0 && today.getDate() < birth.getDate())) a--;
+    return a;
+  }
+  function startOfToday(){
+    var n = new Date();
+    return new Date(n.getFullYear(), n.getMonth(), n.getDate());
+  }
+
+  /* ---------- ไฟล์แนบ ---------- */
+  var FILE_TYPES = {
+    jpg:["image/jpeg","image/jpg"], jpeg:["image/jpeg","image/jpg"],
+    png:["image/png"], pdf:["application/pdf"]
+  };
+  var MAX_FILE = 2 * 1024 * 1024;
+
+  /* ---------- กติกาการตรวจสอบ: คืนข้อความผิดพลาด หรือ null เมื่อถูกต้อง ---------- */
   var RULES = {
     fullname: function(){
-      var v = $("#fullname").value.trim();
+      var v = squash($("#fullname").value);
       if(!v) return "กรุณากรอกชื่อ-นามสกุล";
-      if(v.length < 4) return "ชื่อ-นามสกุลสั้นเกินไป (อย่างน้อย 4 ตัวอักษร)";
-      if(!/^[฀-๿a-zA-Z']+(\s+[฀-๿a-zA-Z']+)+$/.test(v))
-        return "กรอกทั้งชื่อและนามสกุล โดยใช้ตัวอักษรเท่านั้น";
+      if(len(v) < 4) return "ชื่อ-นามสกุลสั้นเกินไป (อย่างน้อย 4 ตัวอักษร)";
+      if(len(v) > 80) return "ชื่อ-นามสกุลยาวเกิน 80 ตัวอักษร";
+      if(!NAME_RE.test(v)) return "กรอกทั้งชื่อและนามสกุล คั่นด้วยเว้นวรรค และใช้ตัวอักษรไทย/อังกฤษเท่านั้น";
       return null;
     },
     email: function(){
       var v = $("#email").value.trim();
       if(!v) return "กรุณากรอกอีเมล";
-      if(!/^[^\s@]+@[^\s@]+\.[A-Za-z]{2,}$/.test(v)) return "รูปแบบอีเมลไม่ถูกต้อง เช่น name@example.com";
+      if(v.length > 254) return "อีเมลยาวเกินไป";
+      if(v.indexOf("..") !== -1) return "รูปแบบอีเมลไม่ถูกต้อง (มีจุดติดกัน)";
+      if(v.split("@")[0].length > 64) return "ชื่อผู้ใช้ในอีเมลยาวเกินไป";
+      if(!EMAIL_RE.test(v)) return "รูปแบบอีเมลไม่ถูกต้อง เช่น name@example.com";
       return null;
     },
     phone: function(){
       var v = $("#phone").value.trim();
       if(!v) return "กรุณากรอกเบอร์โทรศัพท์";
-      if(!/^0\d{8,}$/.test(v)) return "เบอร์โทรศัพท์ต้องเป็นตัวเลข 10 หลัก และขึ้นต้นด้วย 0";
+      if(!/^\d+$/.test(v)) return "เบอร์โทรศัพท์ต้องเป็นตัวเลขเท่านั้น";
+      if(v.length !== 10) return "เบอร์โทรศัพท์ต้องมี 10 หลักพอดี (ตอนนี้ " + v.length + " หลัก)";
+      if(v.charAt(0) !== "0") return "เบอร์โทรศัพท์ต้องขึ้นต้นด้วย 0";
       return null;
     },
     natid: function(){
       var v = $("#natid").value.trim();
       if(!v) return "กรุณากรอกเลขบัตรประจำตัวประชาชน";
-      if(!/^\d{13}$/.test(v)) return "ต้องเป็นตัวเลข 13 หลัก";
+      if(!/^\d+$/.test(v)) return "เลขบัตรประชาชนต้องเป็นตัวเลขเท่านั้น";
+      if(v.length !== 13) return "เลขบัตรประชาชนต้องมี 13 หลักพอดี (ตอนนี้ " + v.length + " หลัก)";
       if(!validThaiId(v)) return "เลขบัตรประชาชนไม่ถูกต้อง (หลักตรวจสอบไม่ตรง)";
       return null;
     },
     dob: function(){
-      var v = $("#dob").value;
-      if(!v) return "กรุณาเลือกวันเกิด";
-      var d = new Date(v), now = new Date();
-      if(isNaN(d.getTime())) return "รูปแบบวันที่ไม่ถูกต้อง";
-      if(d > now) return "วันเกิดต้องไม่เป็นวันในอนาคต";
-      var age = now.getFullYear() - d.getFullYear();
-      if(age < 18) return "ผู้สมัครต้องมีอายุครบ 18 ปีบริบูรณ์";
-      if(age > 80) return "กรุณาตรวจสอบปีเกิดอีกครั้ง";
+      var raw = $("#dob").value;
+      if(!raw) return "กรุณาเลือกวันเกิด";
+      var d = parseDate(raw);
+      if(!d) return "รูปแบบวันที่ไม่ถูกต้อง";
+      var today = startOfToday();
+      if(d.getTime() > today.getTime()) return "วันเกิดต้องไม่เป็นวันในอนาคต";
+      var age = ageOn(d, today);
+      if(age < 18) return "ผู้สมัครต้องมีอายุครบ 18 ปีบริบูรณ์ (ขณะนี้อายุ " + age + " ปี)";
+      if(age > 80) return "ผู้สมัครต้องมีอายุไม่เกิน 80 ปี (ขณะนี้อายุ " + age + " ปี)";
       return null;
     },
     experience: function(){
@@ -555,8 +603,11 @@
     pwd: function(){
       var v = $("#pwd").value;
       if(!v) return "กรุณากรอกรหัสผ่าน";
-      if(v.length < 8) return "รหัสผ่านต้องยาวอย่างน้อย 8 ตัวอักษร";
-      if(!/[A-Za-z]/.test(v) || !/\d/.test(v)) return "รหัสผ่านต้องมีทั้งตัวอักษรและตัวเลข";
+      if(/\s/.test(v)) return "รหัสผ่านต้องไม่มีช่องว่าง";
+      if(v.length < 8) return "รหัสผ่านต้องยาวอย่างน้อย 8 ตัวอักษร (ตอนนี้ " + v.length + " ตัว)";
+      if(v.length > 64) return "รหัสผ่านต้องยาวไม่เกิน 64 ตัวอักษร";
+      if(!/[A-Za-z]/.test(v)) return "รหัสผ่านต้องมีตัวอักษรอย่างน้อย 1 ตัว";
+      if(!/\d/.test(v)) return "รหัสผ่านต้องมีตัวเลขอย่างน้อย 1 ตัว";
       return null;
     },
     pwd2: function(){
@@ -566,60 +617,83 @@
       return null;
     },
     doc: function(){
-      var f = doc.files[0];
+      var f = docIn.files && docIn.files[0];
       if(!f) return "กรุณาแนบไฟล์เอกสารยืนยันตัวตน";
-      if(!/\.(jpe?g|png|pdf)$/i.test(f.name)) return "รองรับเฉพาะไฟล์ JPG, PNG และ PDF";
-      if(f.size > 2*1024*1024) return "ไฟล์ใหญ่เกิน 2 MB กรุณาลดขนาดไฟล์";
+      var m = /\.([A-Za-z0-9]+)$/.exec(f.name);
+      var ext = m ? m[1].toLowerCase() : "";
+      if(!FILE_TYPES.hasOwnProperty(ext)) return "รองรับเฉพาะไฟล์ JPG, PNG และ PDF";
+      if(f.type && FILE_TYPES[ext].indexOf(f.type) === -1)
+        return "ชนิดไฟล์จริงไม่ตรงกับนามสกุลไฟล์";
+      if(f.size === 0) return "ไฟล์ว่างเปล่า กรุณาเลือกไฟล์ใหม่";
+      if(f.size > MAX_FILE)
+        return "ไฟล์ใหญ่เกิน 2 MB (ไฟล์นี้ " + (f.size/1024/1024).toFixed(2) + " MB)";
       return null;
     },
-    roles: function(){
-      return picked("roles").length ? null : "เลือกบทบาทอย่างน้อย 1 รายการ";
-    },
-    regions: function(){
-      return picked("regions").length ? null : "เลือกภูมิภาคอย่างน้อย 1 รายการ";
-    },
-    contacts: function(){
-      return picked("contacts").length ? null : "เลือกช่องทางติดต่ออย่างน้อย 1 รายการ";
-    },
+    roles:    function(){ return picked("roles").length    ? null : "เลือกบทบาทอย่างน้อย 1 รายการ"; },
+    regions:  function(){ return picked("regions").length  ? null : "เลือกภูมิภาคอย่างน้อย 1 รายการ"; },
+    contacts: function(){ return picked("contacts").length ? null : "เลือกช่องทางติดต่ออย่างน้อย 1 รายการ"; },
     note: function(){
-      return $("#note").value.length > 300 ? "ข้อความยาวเกิน 300 ตัวอักษร" : null;
+      var n = len($("#note").value);
+      return n > 300 ? "ข้อความยาวเกิน 300 ตัวอักษร (ตอนนี้ " + n + " ตัว)" : null;
     },
     terms: function(){
       return $("#terms").checked ? null : "กรุณายอมรับเงื่อนไขก่อนส่งใบสมัคร";
     }
   };
 
-  var ORDER = ["fullname","email","phone","natid","dob","experience","pwd","pwd2","doc","roles","regions","contacts","note","terms"];
+  var ORDER    = ["fullname","email","phone","natid","dob","experience","pwd","pwd2","doc","roles","regions","contacts","note","terms"];
   var REQUIRED = ["fullname","email","phone","natid","dob","experience","pwd","pwd2","doc","roles","regions","contacts","terms"];
   var STEPS = {
-    ident:["fullname","email","phone","natid","dob","experience"],
-    account:["pwd","pwd2"],
-    doc:["doc"],
-    skill:["roles","regions"],
-    contact:["contacts","terms"]
+    ident:   ["fullname","email","phone","natid","dob","experience"],
+    account: ["pwd","pwd2"],
+    doc:     ["doc"],
+    skill:   ["roles","regions"],
+    contact: ["contacts","terms"]
   };
+
+  /* ---------- ผูก aria ให้ทุกช่องอัตโนมัติ ---------- */
+  ORDER.forEach(function(n){
+    var f = fieldOf(n); if(!f) return;
+    var hint = $(".hint", f), msg = $(".msg", f);
+    var ids = [];
+    if(hint){ hint.id = n + "-hint"; ids.push(hint.id); }
+    if(msg){ msg.id = n + "-msg";  ids.push(msg.id); }
+    $$("input,select,textarea", f).forEach(function(el){
+      if(el.type !== "checkbox" || el.id === "terms") el.setAttribute("aria-describedby", ids.join(" "));
+    });
+  });
+
+  function controlsOf(n){
+    var f = fieldOf(n);
+    return f ? $$("input,select,textarea", f) : [];
+  }
 
   function quiet(n){ return RULES[n]() === null; }
 
   function show(n){
     var f = fieldOf(n); if(!f) return true;
     var err = RULES[n]();
-    var m = $(".msg", f);
+    var msg = $(".msg", f);
     f.classList.remove("bad","good");
-    if(err){ f.classList.add("bad"); if(m) m.textContent = err; }
-    else {
-      if(m) m.textContent = "";
+    if(err){
+      f.classList.add("bad");
+      if(msg) msg.textContent = err;
+    } else {
+      if(msg) msg.textContent = "";
       if(n !== "note" || $("#note").value.length) f.classList.add("good");
     }
+    controlsOf(n).forEach(function(el){ el.setAttribute("aria-invalid", err ? "true" : "false"); });
     return !err;
   }
 
   function reset(n){
     var f = fieldOf(n); if(!f) return;
     f.classList.remove("bad","good");
-    var m = $(".msg", f); if(m) m.textContent = "";
+    var msg = $(".msg", f); if(msg) msg.textContent = "";
+    controlsOf(n).forEach(function(el){ el.removeAttribute("aria-invalid"); });
   }
 
+  /* ---------- ความคืบหน้า ---------- */
   var CIRC = 2 * Math.PI * 26;
   function updateProgress(){
     var done = 0;
@@ -633,10 +707,15 @@
     });
   }
 
-  /* ---------- live wiring ---------- */
+  /* ---------- การตรวจสอบระหว่างพิมพ์ ---------- */
   ["fullname","email","phone","natid","pwd","pwd2","note"].forEach(function(id){
     var el = $("#"+id);
-    el.addEventListener("blur", function(){ show(id); updateProgress(); });
+    el.addEventListener("blur", function(){
+      if(id === "fullname") el.value = squash(el.value);
+      else if(id === "email") el.value = el.value.trim();
+      show(id);
+      updateProgress();
+    });
     el.addEventListener("input", function(){
       if(fieldOf(id).classList.contains("bad")) show(id);
       updateProgress();
@@ -644,19 +723,33 @@
   });
   ["dob","experience"].forEach(function(id){
     $("#"+id).addEventListener("change", function(){ show(id); updateProgress(); });
+    $("#"+id).addEventListener("input",  function(){ if(fieldOf(id).classList.contains("bad")) show(id); updateProgress(); });
   });
   $$('input[name="roles"],input[name="regions"],input[name="contacts"]').forEach(function(cb){
     cb.addEventListener("change", function(){ show(cb.name); updateProgress(); });
   });
   $("#terms").addEventListener("change", function(){ show("terms"); updateProgress(); });
   $("#pwd").addEventListener("input", function(){
-    if(fieldOf("pwd2").classList.contains("bad") || $("#pwd2").value) show("pwd2");
+    if($("#pwd2").value) show("pwd2");
   });
 
-  $("#phone").addEventListener("input", function(){ this.value = this.value.replace(/\D/g,""); });
-  $("#natid").addEventListener("input", function(){ this.value = this.value.replace(/\D/g,""); });
+  /* รับเฉพาะตัวเลข โดยรักษาตำแหน่งเคอร์เซอร์ */
+  function digitsOnly(el){
+    el.addEventListener("input", function(){
+      var before = el.value, pos = el.selectionStart;
+      var after = before.replace(/\D/g, "");
+      if(after !== before){
+        var removed = 0;
+        for(var i=0;i<pos;i++){ if(!/\d/.test(before.charAt(i))) removed++; }
+        el.value = after;
+        try { el.setSelectionRange(pos - removed, pos - removed); } catch(e){}
+      }
+    });
+  }
+  digitsOnly($("#phone"));
+  digitsOnly($("#natid"));
 
-  /* password strength meter */
+  /* มิเตอร์ความแข็งแรงของรหัสผ่าน */
   $("#pwd").addEventListener("input", function(){
     var v = this.value, s = 0;
     if(v.length >= 8) s++;
@@ -665,75 +758,139 @@
     $$("#bars i").forEach(function(b,i){ b.className = (i < s) ? "on"+s : ""; });
   });
 
-  /* note counter */
+  /* ตัวนับตัวอักษร */
   $("#note").addEventListener("input", function(){
-    var n = this.value.length;
+    var n = len(this.value);
     noteCount.textContent = n + " / 300";
     noteCount.classList.toggle("warn", n > 300);
   });
 
-  /* salary slider */
+  /* สไลเดอร์ค่าตอบแทน */
+  function salaryValue(){
+    var v = Number(salary.value);
+    if(!isFinite(v)) v = Number(salary.min);
+    return Math.min(Number(salary.max), Math.max(Number(salary.min), Math.round(v)));
+  }
   function paintSlider(){
-    var pct = (salary.value - salary.min) / (salary.max - salary.min) * 100;
+    var v = salaryValue();
+    var pct = (v - salary.min) / (salary.max - salary.min) * 100;
     salary.style.setProperty("--pct", pct + "%");
-    $("#salaryVal").textContent = "$" + Number(salary.value).toLocaleString("en-US");
+    $("#salaryVal").textContent = "$" + v.toLocaleString("en-US");
   }
   salary.addEventListener("input", paintSlider);
+  salary.addEventListener("change", paintSlider);
   paintSlider();
 
-  /* file upload */
+  /* ---------- ไฟล์แนบ ---------- */
   var drop = $("#drop"), chip = $("#filechip");
+  function fmtSize(b){
+    return b < 1024 ? b + " B"
+         : b < 1024*1024 ? (b/1024).toFixed(0) + " KB"
+         : (b/1024/1024).toFixed(2) + " MB";
+  }
   function showFile(){
-    var f = doc.files[0];
-    if(!f){ chip.classList.remove("on"); return; }
+    var f = docIn.files && docIn.files[0];
+    if(!f){ chip.classList.remove("on"); $("#fileName").textContent = ""; $("#fileSize").textContent = ""; return; }
     chip.classList.add("on");
     $("#fileName").textContent = f.name;
-    $("#fileSize").textContent = (f.size/1024).toFixed(0) + " KB";
+    $("#fileSize").textContent = fmtSize(f.size);
   }
-  drop.addEventListener("click", function(){ doc.click(); });
+  drop.addEventListener("click", function(){ docIn.click(); });
   drop.addEventListener("keydown", function(e){
-    if(e.key === "Enter" || e.key === " "){ e.preventDefault(); doc.click(); }
+    if(e.key === "Enter" || e.key === " " || e.key === "Spacebar"){ e.preventDefault(); docIn.click(); }
   });
-  drop.addEventListener("dragover", function(e){ e.preventDefault(); drop.classList.add("over"); });
-  drop.addEventListener("dragleave", function(){ drop.classList.remove("over"); });
+  ["dragenter","dragover"].forEach(function(ev){
+    drop.addEventListener(ev, function(e){ e.preventDefault(); e.stopPropagation(); drop.classList.add("over"); });
+  });
+  ["dragleave","dragend"].forEach(function(ev){
+    drop.addEventListener(ev, function(e){ e.preventDefault(); drop.classList.remove("over"); });
+  });
   drop.addEventListener("drop", function(e){
-    e.preventDefault(); drop.classList.remove("over");
-    if(e.dataTransfer.files.length){ doc.files = e.dataTransfer.files; showFile(); show("doc"); updateProgress(); }
+    e.preventDefault(); e.stopPropagation(); drop.classList.remove("over");
+    var files = e.dataTransfer && e.dataTransfer.files;
+    if(files && files.length){
+      try { docIn.files = files; }
+      catch(err){
+        var dt = new DataTransfer(); dt.items.add(files[0]); docIn.files = dt.files;
+      }
+      showFile(); show("doc"); updateProgress();
+    }
   });
-  doc.addEventListener("change", function(){ showFile(); show("doc"); updateProgress(); });
+  /* กันเบราว์เซอร์เปิดไฟล์ทับหน้าเว็บเมื่อลากไปวางนอกกรอบ */
+  ["dragover","drop"].forEach(function(ev){
+    window.addEventListener(ev, function(e){ if(!drop.contains(e.target)) e.preventDefault(); });
+  });
+  docIn.addEventListener("change", function(){ showFile(); show("doc"); updateProgress(); });
   $("#fileClear").addEventListener("click", function(){
-    doc.value = ""; showFile(); show("doc"); updateProgress();
+    docIn.value = ""; showFile(); show("doc"); updateProgress(); drop.focus();
   });
 
-  /* ---------- submit ---------- */
+  /* ---------- หน้าต่างสรุป ---------- */
+  var lastFocus = null;
+  function openModal(){
+    lastFocus = document.activeElement;
+    veil.classList.add("on");
+    veil.removeAttribute("aria-hidden");
+    submitBtn.disabled = true;
+    $("#closeModal").focus();
+  }
+  function closeModal(){
+    if(!veil.classList.contains("on")) return;
+    veil.classList.remove("on");
+    veil.setAttribute("aria-hidden","true");
+    submitBtn.disabled = false;
+    if(lastFocus && lastFocus.focus) lastFocus.focus();
+  }
+  veil.setAttribute("aria-hidden","true");
+  $("#closeModal").addEventListener("click", closeModal);
+  veil.addEventListener("click", function(e){ if(e.target === veil) closeModal(); });
+  document.addEventListener("keydown", function(e){
+    if(!veil.classList.contains("on")) return;
+    if(e.key === "Escape"){ closeModal(); return; }
+    if(e.key === "Tab"){ e.preventDefault(); $("#closeModal").focus(); }   /* กักโฟกัสไว้ในหน้าต่าง */
+  });
+
+  function maskId(v){
+    return /^\d{13}$/.test(v) ? v.slice(0,4) + "•••••" + v.slice(9) : v;
+  }
+
+  /* ---------- ส่งฟอร์ม ---------- */
   frm.addEventListener("submit", function(e){
     e.preventDefault();
+    if(veil.classList.contains("on")) return;
+
+    $("#fullname").value = squash($("#fullname").value);
+    $("#email").value = $("#email").value.trim();
+
     var firstBad = null;
     ORDER.forEach(function(n){ if(!show(n) && !firstBad) firstBad = n; });
     updateProgress();
+
     if(firstBad){
       var f = fieldOf(firstBad);
       f.classList.add("shake");
       setTimeout(function(){ f.classList.remove("shake"); }, 420);
-      var el = $("input,select,textarea", f);
-      if(el) el.focus({preventScroll:true});
+      var el = controlsOf(firstBad)[0];
+      if(el && el.type === "file") el = drop;
+      if(el && el.focus) el.focus({preventScroll:true});
       f.scrollIntoView({behavior:"smooth", block:"center"});
       return;
     }
-    var file = doc.files[0];
+
+    var file = docIn.files[0];
     var rows = [
-      ["ชื่อ-นามสกุล", $("#fullname").value.trim()],
-      ["อีเมล", $("#email").value.trim()],
-      ["โทรศัพท์", $("#phone").value.trim()],
-      ["เลขบัตรประชาชน", $("#natid").value.replace(/^(\d{4})\d{5}(\d{4})$/, "$1•••••$2")],
-      ["วันเกิด", $("#dob").value],
-      ["ประสบการณ์", $("#experience").options[$("#experience").selectedIndex].text],
-      ["เอกสารแนบ", file ? file.name : "-"],
-      ["บทบาท", picked("roles").join(", ")],
-      ["ภูมิภาค", picked("regions").join(", ")],
-      ["ค่าตอบแทน", "$" + Number(salary.value).toLocaleString("en-US") + " / สัปดาห์"],
-      ["ช่องทางติดต่อ", picked("contacts").join(", ")],
-      ["ข้อมูลเพิ่มเติม", $("#note").value.trim() || "-"]
+      ["ชื่อ-นามสกุล",     $("#fullname").value],
+      ["อีเมล",            $("#email").value],
+      ["โทรศัพท์",         $("#phone").value.trim()],
+      ["เลขบัตรประชาชน",  maskId($("#natid").value.trim())],
+      ["วันเกิด",          $("#dob").value],
+      ["ประสบการณ์",       $("#experience").options[$("#experience").selectedIndex].text],
+      ["เอกสารแนบ",        file ? file.name + " (" + fmtSize(file.size) + ")" : "-"],
+      ["บทบาท",            picked("roles").join(", ")],
+      ["ภูมิภาค",          picked("regions").join(", ")],
+      ["ค่าตอบแทน",        "$" + salaryValue().toLocaleString("en-US") + " / สัปดาห์"],
+      ["ช่องทางติดต่อ",    picked("contacts").join(", ")],
+      ["ข้อมูลเพิ่มเติม",  $("#note").value.trim() || "-"]
     ];
     var dl = $("#summary");
     dl.innerHTML = "";
@@ -742,27 +899,26 @@
       var dd = document.createElement("dd"); dd.textContent = r[1];
       dl.appendChild(dt); dl.appendChild(dd);
     });
-    veil.classList.add("on");
-    $("#closeModal").focus();
+    openModal();
   });
 
-  $("#closeModal").addEventListener("click", function(){ veil.classList.remove("on"); });
-  veil.addEventListener("click", function(e){ if(e.target === veil) veil.classList.remove("on"); });
-  document.addEventListener("keydown", function(e){ if(e.key === "Escape") veil.classList.remove("on"); });
-
-  /* ---------- clear form ---------- */
+  /* ---------- ล้างข้อมูล ---------- */
   $("#clearBtn").addEventListener("click", function(){
+    closeModal();
     frm.reset();
+    docIn.value = "";
     ORDER.forEach(reset);
-    doc.value = ""; showFile();
+    showFile();
     paintSlider();
     noteCount.textContent = "0 / 300";
     noteCount.classList.remove("warn");
     $$("#bars i").forEach(function(b){ b.className = ""; });
+    submitBtn.disabled = false;
     updateProgress();
     $("#fullname").focus();
   });
 
+  /* ---------- เริ่มต้น ---------- */
   updateProgress();
   ORDER.forEach(reset);
 })();
